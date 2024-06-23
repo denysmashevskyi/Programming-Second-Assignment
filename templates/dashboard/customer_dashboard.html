@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Timetable and Tickets</h1>
+        <p class="col-md-8 fs-4">Buy one-way tickets and reservations from A to B</p>
+        <form method="POST" action="{% url 'find-trains' %}">
+            {% csrf_token %}
+            <label for="{{ form.From.id_for_label }}">From:</label>
+            {{ form.From }}
+            <label for="{{ form.To.id_for_label }}">To:</label>
+            {{ form.To }}
+            <div class="container-fluid py-5">
+                <button class="btn btn-primary btn-lg" type="submit">Continue</button>
+            </div>
+        </form>
+        
+
+    </div>
+</div>
+{% endblock content %}

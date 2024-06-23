@@ -1,0 +1,1 @@
+cities = ["Vienna", "Kyiv", "London", "Ottawa", "Paris", "Rome", "Washington"]

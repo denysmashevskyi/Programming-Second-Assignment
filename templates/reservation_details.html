@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %} {% block pageContent %}
+<section class="py-4">
+    <div class="container">
+        <center>
+            <h3 class="fw-bolder text-center">Reservation Details</h3>
+            <hr class="bg-light" style="height: 12px;" width="5%">
+        </center>
+        <div class="card rounded-0 shadow">
+            <div class="card-body">
+                <div class="container-fluid">
+                    <h4>Flight Information</h4>
+                    <p>
+                        <strong>Train Code:</strong> {{ reservation.route.air_craft_code }}<br>
+                        <strong>From:</strong> {{ reservation.route.from_airport.name }}<br>
+                        <strong>To:</strong> {{ reservation.route.to_airport.name }}<br>
+                        <strong>Departure Date and Time:</strong> {{ reservation.route.departure|date:"Y-m-d H:i" }}<br>
+                        <strong>Estimated Time of Arrival:</strong> {{ reservation.route.estimated_arrival|date:"Y-m-d H:i" }}
+                    </p>
+                    <h4>Passenger Information</h4>
+                    <p>
+                        <strong>Fullname:</strong> {{ reservation.first_name }} {{ reservation.middle_name }} {{ reservation.last_name }}<br>
+                        <strong>Gender:</strong> {{ reservation.get_gender_display }}<br>
+                        <strong>Contact #:</strong> {{ reservation.contact }}<br>
+                        <strong>Email:</strong> {{ reservation.email }}<br>
+                        <strong>Address:</strong> {{ reservation.address }}<br>
+                        <strong>Select Seat Type:</strong> {{ reservation.get_type_display }}<br>
+                        <strong>Status:</strong> {{ reservation.get_status_display }}
+                    </p>
+                    <form method="post" action="{% url 'update_reservation_status' reservation.id %}">
+                        {% csrf_token %}
+                        <button type="submit" name="status" value="1" class="btn btn-success">Mark as Confirmed</button>
+                        <button type="submit" name="status" value="2" class="btn btn-danger">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock pageContent %} {% block ScriptBlock %} {% endblock ScriptBlock %}

@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add New Flight</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <style>
+            .center-screen {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60vh;
+            }
+        </style>
+    </head>
+<body>
+    <center>
+    <div class="container center-screen">
+        <div>
+            <h2>Add New Train Stop</h2>
+            <form method='POST' action="{% url 'add_trainstop' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }} 
+                
+                <button type="submit" class="btn btn-primary">Add Train Stop</button>
+            </form>
+        </div>
+    </div>
+    </center>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} {% block pageContent %}
+<section class="py-4">
+    <div class="container">
+        <center>
+            <hr class="bg-light" style="height: 100px;" width="5%">
+            <h3 class="fw-bolder text-center">List of Train Stops</h3>
+            <hr class="bg-light" style="height: 12px;" width="5%">
+        </center>
+        
+        <div class="card rounded-0 shadow">
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="text-end mb-3">
+                        <a href="{% url 'add_trainstop' %}" class="btn btn-primary">Add New</a>
+                    </div>
+                    <table class="table table-bordered table-striped" id="airport-tbl">
+                        <colgroup>
+                            <col width="5%">
+                            <col width="15%">
+                            <col width="50%">
+                            <col width="5%">
+                            <col width="5%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">DateTime</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for airport in airports %}
+                            <tr>
+                                <td class="text-center">{{ forloop.counter }}</td>
+                                <td>{{ airport.date_created|date:"Y-m-d" }}</td>
+                                <td>{{ airport.name }}</td>
+                                
+                                <td class="text-center">
+                                    <a class="btn btn-outline-success" href="{% url 'edit_train_stop' airport.id %}">Edit</a>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-danger" href="{% url 'delete_train_stop' airport.id %}">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock pageContent %} {% block ScriptBlock %}
+{% endblock ScriptBlock %}

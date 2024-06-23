@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pageContent %}
+<section class="py-4">
+    <div class="container">
+        <h2>Share Reserved Trip</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Share Trip</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

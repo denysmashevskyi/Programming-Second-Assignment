@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pageContent %}
+<section class="py-4">
+    <div class="container">
+        <h2>Shared Trips</h2>
+        <div class="list-group">
+            {% for trip in trips %}
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-1">{{ trip.title }}</h5>
+                            <p class="mb-1">{{ trip.description }}</p>
+                            <small>Shared by {{ trip.user.username }} on {{ trip.date_shared|date:"Y-m-d H:i" }}</small>
+                            <a href="{% url 'delete_shared_trip' trip.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

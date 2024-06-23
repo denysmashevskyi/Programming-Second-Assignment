@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block pageContent %}
+<section class="py-4">
+    <div class="container">
+        <center>
+            <h3 class="fw-bolder text-center">Reservation Form</h3>
+            <hr class="bg-light" style="height: 12px;" width="5%">
+        </center>
+        <div class="card rounded-0 shadow">
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="mb-4">
+                        <h4>Train - {{ flight.code }}</h4>
+                        <p>
+                            <strong>Train:</strong> {{ flight.air_craft_code }}<br>
+                            <strong>From:</strong> {{ flight.from_airport.name }}<br>
+                            <strong>To:</strong> {{ flight.to_airport.name }}<br>
+                            <strong>Business Class Slots:</strong> {{ flight.business_class_slots }}<br>
+                            <strong>Business Class Price:</strong> {{ flight.business_class_price }}<br>
+                            <strong>Economy Slots:</strong> {{ flight.economy_slots }}<br>
+                            <strong>Economy Price:</strong> {{ flight.economy_price }}<br>
+                            <strong>Departure:</strong> {{ flight.departure|date:"Y-m-d H:i" }}<br>
+                            <strong>ETA:</strong> {{ flight.estimated_arrival|date:"Y-m-d H:i" }}
+                        </p>
+                    </div>
+                    <form method="POST" action="{% url 'submit_reservation' flight.id %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Submit Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock pageContent %} {% block ScriptBlock %} {% endblock ScriptBlock %}

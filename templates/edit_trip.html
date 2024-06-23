@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Trip</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+<body>
+    <div class="container">
+        <h2>Edit Trip</h2>
+        <form method='POST' action="{% url 'edit_trip' flight.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            <div class="mb-3">
+                <label for="code" class="form-label">Code</label>
+                {{ form.code }}
+            </div>
+            
+
+            <div class="mb-3">
+                <label for="airplane" class="form-label">Train Code</label>
+                {{ form.air_craft_code }}
+            </div>
+            <div class="mb-3">
+                <label for="from_airport" class="form-label">From</label>
+                {{ form.from_airport }}
+            </div>
+            <div class="mb-3">
+                <label for="to_airport" class="form-label">To</label>
+                {{ form.to_airport }}
+            </div>
+            
+            <div class="mb-3">
+                <label for="departure" class="form-label">Departure (YYYY-MM-DD HH:MM)</label>
+                <div id="departure-picker" class="input-group date">
+                    {{ form.departure }}
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="estimated_arrival" class="form-label">Estimated Arrival (YYYY-MM-DD HH:MM)</label>
+                <div id="arrival-picker" class="input-group date">
+                    {{ form.estimated_arrival }}
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="business_class_slots" class="form-label">Business Class Slots</label>
+                {{ form.business_class_slots }}
+            </div>
+            <div class="mb-3">
+                <label for="economy_slots" class="form-label">Economy Slots</label>
+                {{ form.economy_slots }}
+            </div>
+            <div class="mb-3">
+                <label for="business_class_price" class="form-label">Business Class Price</label>
+                {{ form.business_class_price }}
+            </div>
+            <div class="mb-3">
+                <label for="economy_price" class="form-label">Economy Price</label>
+                {{ form.economy_price }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Train Stop</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+<body>
+    <div class="container">
+        <h2>Edit Train Stop</h2>
+        <form method='POST' action="{% url 'edit_train_stop' airport.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{airport.id}}">
+            <div class="mb-3">
+                <label for="name" class="control-label">Name</label>
+                <input type="text" id="name" name="name" class="form-control form-control-sm rounded-0" value="{{airport.name}}" required>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

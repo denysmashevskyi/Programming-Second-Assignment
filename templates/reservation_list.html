@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load static %} {% block pageContent %}
+<section class="py-4">
+    <div class="container">
+        <center>
+            <hr class="bg-light" style="height: 100px;" width="5%">
+            <h3 class="fw-bolder text-center">Reservations</h3>
+            <hr class="bg-light" style="height: 12px;" width="5%">
+        </center>
+        <div class="card rounded-0 shadow">
+            <div class="card-body">
+                <div class="container-fluid">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Date Added</th>
+                                <th class="text-center">Trip</th>
+                                <th class="text-center">Passenger</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Details</th>
+                                <th class="text-center">Delete</th>
+                                <th class="text-center">Share</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reservation in reservations %}
+                            <tr>
+                                <td class="text-center">{{ forloop.counter }}</td>
+                                <td>{{ reservation.date_added|date:"Y-m-d H:i" }}</td>
+                                <td>
+                                    <div class="lh-1">
+                                        <small><b>From:</b> {{ reservation.route.from_airport.name }}, {{ reservation.route.departure|date:"Y-m-d H:i" }}</small><br>
+                                        <small><b>To:</b> {{ reservation.route.from_airport.name }}, {{ reservation.route.estimated_arrival|date:"Y-m-d H:i" }}</small>
+                                    </div>
+                                </td>
+                                <td>{{ reservation.first_name }} {{ reservation.last_name }}</td>
+                                <td>{{ reservation.get_status_display }}</td>
+                                <td class="text-center">
+                                    <a href="{% url 'reservation_details' reservation.id %}" class="btn btn-info btn-sm">View Details</a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="{% url 'delete_reservation' reservation.id %}" class="btn btn-danger">Delete</a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="{% url 'share_reserved_trip' reservation.id %}" class="btn btn-secondary btn-sm mt-2">Share</a>
+                                </td>
+
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center">No reservations found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock pageContent %} 

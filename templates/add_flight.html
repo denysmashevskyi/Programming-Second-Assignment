@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add New Trip</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@5.39.0/dist/css/tempus-dominus.min.css" integrity="sha384-TjFIH9G92u6VLP1nwvyl1+KZy3uZ0ihHzlmAUI5vK+Q6eoDl+3m/qWiZ9u2OSjF2" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+<body>
+    <div class="container">
+        <h2>Add New Trip</h2>
+        <form method='POST' action="{% url 'add_flight' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            <div class="mb-3">
+                <label for="code" class="form-label">Code</label>
+                {{ form.code }}
+            </div>
+            
+
+            <div class="mb-3">
+                <label for="airplane" class="form-label">Train Code</label>
+                {{ form.air_craft_code }}
+            </div>
+            <div class="mb-3">
+                <label for="from_airport" class="form-label">From</label>
+                {{ form.from_airport }}
+            </div>
+            <div class="mb-3">
+                <label for="to_airport" class="form-label">To</label>
+                {{ form.to_airport }}
+            </div>
+            
+            <div class="mb-3">
+                <label for="departure" class="form-label">Departure (YYYY-MM-DD HH:MM)</label>
+                <div id="departure-picker" class="input-group date">
+                    {{ form.departure }}
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="estimated_arrival" class="form-label">Estimated Arrival (YYYY-MM-DD HH:MM)</label>
+                <div id="arrival-picker" class="input-group date">
+                    {{ form.estimated_arrival }}
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="business_class_slots" class="form-label">Business Class Slots</label>
+                {{ form.business_class_slots }}
+            </div>
+            <div class="mb-3">
+                <label for="economy_slots" class="form-label">Economy Slots</label>
+                {{ form.economy_slots }}
+            </div>
+            <div class="mb-3">
+                <label for="business_class_price" class="form-label">Business Class Price</label>
+                {{ form.business_class_price }}
+            </div>
+            <div class="mb-3">
+                <label for="economy_price" class="form-label">Economy Price</label>
+                {{ form.economy_price }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Flight</button>
+        </form>
+    </div>
+
+
+</body>
+</html>
