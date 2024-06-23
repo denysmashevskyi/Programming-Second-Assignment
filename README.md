@@ -39,3 +39,8 @@ How to install
 How to run the application
 
 py manage.py runserver
+
+Admin user credentials:
+
+Email: swaggg@mail.com
+Password: gogogo123+
