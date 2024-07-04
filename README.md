@@ -40,6 +40,15 @@ How to run the application
 
 py manage.py runserver
 
+How to use the application
+
+1. Log in as admin user
+2. Add train stops
+3. Add routes
+4. Find the route between specified 2 stops and specified time
+5. Choose a ticket and make a reservation
+6. Go to Reservations and confirm/cancel the chosen reservation
+
 Admin user credentials:
 
 Email: swaggg@mail.com
